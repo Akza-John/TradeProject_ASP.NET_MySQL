@@ -60,5 +60,8 @@ TO BUILD
 TO RUN
 
       > dotnet RUN
+      
+
+Nb: Create customerdb in you MySQL local
 
 
