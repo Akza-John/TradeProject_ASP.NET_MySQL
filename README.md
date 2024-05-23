@@ -62,6 +62,6 @@ TO RUN
       > dotnet RUN
       
 
-Nb: Create customerdb in you MySQL local
+Nb: Create customerdb in your MySQL local DB
 
 
