@@ -34,7 +34,8 @@ namespace ProjectTrade.Controllers
                     processStage = t.ProcessStages.Select(p => new
                     {
                         stageName = p.StageName,
-                        status = p.Status
+                        status = p.Status,
+                        cost = p.Cost
                     }).ToList()
                 }).ToList<object>();
 
@@ -51,7 +52,7 @@ namespace ProjectTrade.Controllers
             List<TradeTransactions> transactions = new List<TradeTransactions>();
 
             string connectionString = _configuration.GetConnectionString("DBConn");
-            string query = "SELECT transId, tradeStage, StageName, Status FROM tradetransactions";
+            string query = "SELECT transId, tradeStage, StageName, Status, Cost FROM tradetransactions";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -65,6 +66,7 @@ namespace ProjectTrade.Controllers
                     string tradeStage = reader["tradeStage"].ToString();
                     string stageName = reader["StageName"].ToString();
                     string status = reader["Status"].ToString();
+                    string cost = reader["Cost"].ToString();
 
                     TradeTransactions transaction = transactions.FirstOrDefault(t => t.Id == id);
                     if (transaction == null)
@@ -81,7 +83,8 @@ namespace ProjectTrade.Controllers
                     transaction.ProcessStages.Add(new ProcessStage
                     {
                         StageName = stageName,
-                        Status = status
+                        Status = status,
+                        Cost = cost
                     });
                 }
 
@@ -180,5 +183,6 @@ public class TradeTransactions
     {
         public string StageName { get; set; }
         public string Status { get; set; }
+        public object Cost { get; internal set; }
     }
 }

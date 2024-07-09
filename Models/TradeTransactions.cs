@@ -10,6 +10,7 @@ namespace ProjectTrade.Models
        
         public string StageName { get; set; }
         public string Status { get; set; }
+        public int Cost { get; set; }
 
     }
 }
